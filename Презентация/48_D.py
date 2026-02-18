@@ -4,10 +4,7 @@ class LampRow:
         self.__state = 0
         
     def __getState(self):
-        str_state = []
-        for i in range(self.__length - 1, -1, -1):
-            str_state.append(str((self.__state // (10**i)) % 10)) 
-        return ''.join(str_state) 
+        return f"{self.__state:0{self.__length}d}" 
     
     def __setState(self, state):
         if len(state) != self.__length:
@@ -15,11 +12,7 @@ class LampRow:
         self.__state = int(state)
         
     def show(self):
-        str_state = []
-        for i in range(self.__length - 1, -1, -1):
-            str_state.append(str((self.__state // (10**i)) % 10)) 
-        result = ''.join(str_state)
-        print(result.replace('0', '-').replace('1', '*').replace('2', 'o'))
+        print(f"{self.__state:0{self.__length}d}".replace('0', '-').replace('1', '*').replace('2', 'o'))
         
     state = property(__getState, __setState)
 
